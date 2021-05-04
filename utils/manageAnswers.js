@@ -6,9 +6,50 @@ const validateProjectTitle = (title) => {
   }
 };
 
-const manageDescription = (descriptionSection, descriptionInfo) => {
-  if (descriptionSection === true) {
-    return descriptionInfo.charAt(0).toUpperCase() + title.slice(1);
+const manageSections = (section, info) => {
+  if (section === true) {
+    return info.charAt(0).toUpperCase() + info.slice(1);
+  } else {
+    return "";
+  }
+};
+
+const createLicenseBadge = (license) => {
+  if (license !== "None") {
+    return `![${license} license](https://img.shields.io/badge/license-${license}-green)`;
+  } else {
+    return "";
+  }
+};
+
+const createLicenseSection = (license) => {
+  if (license !== "None") {
+    return `This application is licensed by ${license}.`;
+  } else {
+    return "This application is not licensed.";
+  }
+};
+
+const manageLicenseSection = (section, info) => {
+  if (section === true) {
+    const licenseBadge = createLicenseBadge(info);
+    const licenseSection = createLicenseSection(info);
+
+    return (license = {
+      licenseBadge,
+      licenseSection,
+    });
+  } else {
+    return "";
+  }
+};
+
+const manageQuestionsSection = (section, github, email) => {
+  if (section === true) {
+    return {
+      github,
+      email,
+    };
   } else {
     return "";
   }
@@ -35,11 +76,26 @@ const manageAnswers = (answers) => {
   } = answers;
 
   const title = validateProjectTitle(projectTitle);
-  const  = manageDescription(descriptionSection, descriptionInfo);
+
+  const description = manageSections(descriptionSection, descriptionInfo);
+  const installation = manageSections(installationSection, installationInfo);
+  const usage = manageSections(usageSection, usageInfo);
+  const contributing = manageSections(contributingSection, contributingInfo);
+  const testing = manageSections(testingSection, testingInfo);
+
+  const license = manageLicenseSection(licenseSection, licenseInfo);
+
+  const questions = manageQuestionsSection(questionsSection, githubUrl, email);
 
   const managedAnswers = {
     title,
     description,
+    installation,
+    usage,
+    contributing,
+    testing,
+    license,
+    questions,
   };
 
   return managedAnswers;

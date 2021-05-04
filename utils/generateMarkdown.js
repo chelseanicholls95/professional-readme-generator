@@ -1,20 +1,19 @@
-// If there is no license, return an empty string
-const renderLicenseBadge = (license) => {
-  if (license !== "None") {
-    return `![${license} license](https://img.shields.io/badge/license-${license}-green)`;
-  } else {
-    return "";
-  }
-};
+// // If there is no license, return an empty string
+// const renderLicenseBadge = (license) => {
+//   if (license !== "None") {
+//     return `![${license} license](https://img.shields.io/badge/license-${license}-green)`;
+//   } else {
+//     return "";
+//   }
+// };
 
-// If there is no license, return an empty string
-const renderLicenseSection = (license) => {
-  if (license !== "None") {
-    return `This application is licensed by ${license}.`;
-  } else {
-    return "This application is not licensed.";
-  }
-};
+// const renderLicenseSection = (license) => {
+//   if (license !== "None") {
+//     return `This application is licensed by ${license}.`;
+//   } else {
+//     return "This application is not licensed.";
+//   }
+// };
 
 const generateMarkdown = (data) => {
   const {
