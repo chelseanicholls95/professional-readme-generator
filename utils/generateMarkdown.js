@@ -1,5 +1,4 @@
 const createTableOfContents = (each) => {
-  console.log(each[1]);
   if (each[1] !== "") {
     if (each[0] == "licenseBadge" || each[0] == "licenseText") {
       return "[license](#license) \n";
@@ -23,8 +22,7 @@ const generateMarkdown = (data) => {
     testing,
     licenseBadge,
     licenseText,
-    github,
-    email,
+    questions,
   } = data;
 
   const dataArray = Object.entries(data);
@@ -34,40 +32,23 @@ const generateMarkdown = (data) => {
 
   return `# ${title} ${licenseBadge}
 
-  ## Description
-
   ${description}
   
   ## Table of Contents
 
   ${tableOfContents.join("")}
   
-  ## Installation
-  
-  \`\`\`
   ${installation}
-  \`\`\`
-  
-  ## Usage
   
   ${usage}
   
-  ## License
-  
   ${licenseText}
-  
-  ## Contributing
   
   ${contributing}
   
-  ## Tests
-  
   ${testing}
-  
-  ## Questions
-  
-  - Visit my [Github](${github})
-  - Email me at: ${email}`;
+
+  ${questions}`;
 };
 
 module.exports = generateMarkdown;

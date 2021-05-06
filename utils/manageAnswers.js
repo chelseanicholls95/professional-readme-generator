@@ -6,9 +6,45 @@ const validateProjectTitle = (title) => {
   }
 };
 
-const manageSections = (section, info) => {
+const createDescriptionSection = (section, info) => {
   if (section === true) {
-    return info.charAt(0).toUpperCase() + info.slice(1);
+    const text = info.charAt(0).toUpperCase() + info.slice(1);
+    return `## Description \n ${text}`;
+  } else {
+    return "";
+  }
+};
+
+const createInstallationSection = (section, info) => {
+  if (section === true) {
+    const text = info.charAt(0).toUpperCase() + info.slice(1);
+    return `## Installation \n \`\`\` \n ${text} \n \`\`\``;
+  } else {
+    return "";
+  }
+};
+
+const createUsageSection = (section, info) => {
+  if (section === true) {
+    const text = info.charAt(0).toUpperCase() + info.slice(1);
+    return `## Usage \n ${text}`;
+  } else {
+    return "";
+  }
+};
+
+const createContributingSection = (section, info) => {
+  if (section === true) {
+    const text = info.charAt(0).toUpperCase() + info.slice(1);
+    return `## Contributing \n ${text}`;
+  } else {
+    return "";
+  }
+};
+const createTestingSection = (section, info) => {
+  if (section === true) {
+    const text = info.charAt(0).toUpperCase() + info.slice(1);
+    return `## Testing \n ${text}`;
   } else {
     return "";
   }
@@ -24,7 +60,7 @@ const createLicenseBadge = (license) => {
 
 const createLicenseSection = (license) => {
   if (license !== "None") {
-    return `This application is licensed by ${license}.`;
+    return `## License \n This application is licensed by ${license}.`;
   } else {
     return "This application is not licensed.";
   }
@@ -55,6 +91,16 @@ const manageQuestionsSection = (section, github, email) => {
   }
 };
 
+const createQuestionSection = (data) => {
+  const { github, email } = data;
+
+  if (data !== "") {
+    return `## Questions \n
+    - Visit my [Github](${github}) \n
+    - Email me at: ${email}`;
+  }
+};
+
 const manageAnswers = (answers) => {
   const {
     projectTitle,
@@ -77,15 +123,30 @@ const manageAnswers = (answers) => {
 
   const title = validateProjectTitle(projectTitle);
 
-  const description = manageSections(descriptionSection, descriptionInfo);
-  const installation = manageSections(installationSection, installationInfo);
-  const usage = manageSections(usageSection, usageInfo);
-  const contributing = manageSections(contributingSection, contributingInfo);
-  const testing = manageSections(testingSection, testingInfo);
+  const description = createDescriptionSection(
+    descriptionSection,
+    descriptionInfo
+  );
+
+  const installation = createInstallationSection(
+    installationSection,
+    installationInfo
+  );
+  const usage = createUsageSection(usageSection, usageInfo);
+  const contributing = createContributingSection(
+    contributingSection,
+    contributingInfo
+  );
+  const testing = createTestingSection(testingSection, testingInfo);
 
   const license = manageLicenseSection(licenseSection, licenseInfo);
 
-  const questions = manageQuestionsSection(questionsSection, githubUrl, email);
+  const managedQuestionsSection = manageQuestionsSection(
+    questionsSection,
+    githubUrl,
+    email
+  );
+  const questions = createQuestionSection(managedQuestionsSection);
 
   const managedAnswers = {
     title,
@@ -95,7 +156,7 @@ const manageAnswers = (answers) => {
     contributing,
     testing,
     ...license,
-    ...questions,
+    questions,
   };
 
   return managedAnswers;
