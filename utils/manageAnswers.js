@@ -33,12 +33,12 @@ const createLicenseSection = (license) => {
 const manageLicenseSection = (section, info) => {
   if (section === true) {
     const licenseBadge = createLicenseBadge(info);
-    const licenseSection = createLicenseSection(info);
+    const licenseText = createLicenseSection(info);
 
-    return (license = {
+    return {
       licenseBadge,
-      licenseSection,
-    });
+      licenseText,
+    };
   } else {
     return "";
   }
@@ -94,8 +94,8 @@ const manageAnswers = (answers) => {
     usage,
     contributing,
     testing,
-    license,
-    questions,
+    ...license,
+    ...questions,
   };
 
   return managedAnswers;

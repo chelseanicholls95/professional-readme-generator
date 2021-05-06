@@ -126,8 +126,8 @@ const writeToFile = (data) => {
 const init = async () => {
   const answers = await inquirer.prompt(questions);
   const managedAnswers = manageAnswers(answers);
-  console.log(managedAnswers);
-  // const generatedMarkdown = generateMarkdown(answers);
+  const generatedMarkdown = generateMarkdown(managedAnswers);
+  console.log(generatedMarkdown);
   // writeToFile(generatedMarkdown);
 };
 
