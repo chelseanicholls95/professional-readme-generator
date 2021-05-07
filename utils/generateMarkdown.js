@@ -1,11 +1,10 @@
 const createTableOfContents = (each) => {
   if (each[1] !== "") {
     if (each[0] == "licenseBadge" || each[0] == "licenseText") {
-      return "[license](#license) \n";
-    } else if (each[0] == "github" || each[0] == "email") {
-      return "[questions](#questions) \n";
+      return "[License](#license) <br/>";
     } else {
-      return `[${each[0]}](#${each[0]}) \n`;
+      const title = each[0].charAt(0).toUpperCase() + each[0].slice(1);
+      return `[${title}](#${title}) <br/>`;
     }
   } else {
     return "";
@@ -26,7 +25,7 @@ const generateMarkdown = (data) => {
   } = data;
 
   const dataArray = Object.entries(data);
-  const tableOfContentsArray = dataArray.map(createTableOfContents);
+  const tableOfContentsArray = dataArray.slice(1).map(createTableOfContents);
 
   const tableOfContents = [...new Set(tableOfContentsArray)];
 

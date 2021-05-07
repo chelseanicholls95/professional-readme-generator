@@ -127,8 +127,7 @@ const init = async () => {
   const answers = await inquirer.prompt(questions);
   const managedAnswers = manageAnswers(answers);
   const generatedMarkdown = generateMarkdown(managedAnswers);
-  console.log(generatedMarkdown);
-  // writeToFile(generatedMarkdown);
+  writeToFile(generatedMarkdown);
 };
 
 // Function call to initialize app

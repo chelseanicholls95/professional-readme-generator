@@ -41,6 +41,7 @@ const createContributingSection = (section, info) => {
     return "";
   }
 };
+
 const createTestingSection = (section, info) => {
   if (section === true) {
     const text = info.charAt(0).toUpperCase() + info.slice(1);
@@ -98,6 +99,8 @@ const createQuestionSection = (data) => {
     return `## Questions \n
     - Visit my [Github](${github}) \n
     - Email me at: ${email}`;
+  } else {
+    return "";
   }
 };
 
@@ -127,7 +130,6 @@ const manageAnswers = (answers) => {
     descriptionSection,
     descriptionInfo
   );
-
   const installation = createInstallationSection(
     installationSection,
     installationInfo
