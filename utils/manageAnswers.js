@@ -15,10 +15,16 @@ const createDescriptionSection = (section, info) => {
   }
 };
 
-const createInstallationSection = (section, info) => {
-  if (section === true) {
-    const text = info.charAt(0).toUpperCase() + info.slice(1);
-    return `## Installation \n \`\`\` \n ${text} \n \`\`\``;
+const createInstallationSection = (...args) => {
+  const info1 = args[1];
+  const text1 = info1.charAt(0).toUpperCase() + info1.slice(1);
+
+  if (args[0] === true && args[2] === true) {
+    const info2 = args[3];
+    const text2 = info2.charAt(0).toUpperCase() + info2.slice(1);
+    return `## Installation \n \`\`\` \n ${text1} \n ${text2} \n \`\`\``;
+  } else if (args[0] === true && args[2] !== true) {
+    return `## Installation \n \`\`\` \n ${text1} \n \`\`\``;
   } else {
     return "";
   }
@@ -111,6 +117,8 @@ const manageAnswers = (answers) => {
     descriptionInfo,
     installationSection,
     installationInfo,
+    installationSection2,
+    installationInfo2,
     usageSection,
     usageInfo,
     licenseSection,
@@ -132,7 +140,9 @@ const manageAnswers = (answers) => {
   );
   const installation = createInstallationSection(
     installationSection,
-    installationInfo
+    installationInfo,
+    installationSection2,
+    installationInfo2
   );
   const usage = createUsageSection(usageSection, usageInfo);
   const contributing = createContributingSection(

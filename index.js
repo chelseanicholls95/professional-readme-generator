@@ -37,6 +37,19 @@ const questions = [
   },
   {
     type: "confirm",
+    message: "Would you like to add another line to the installation section?",
+    name: "installationSection2",
+  },
+  {
+    type: "input",
+    message: "Enter the second line.",
+    name: "installationInfo2",
+    when: (answers) => {
+      return answers.installationSection2;
+    },
+  },
+  {
+    type: "confirm",
     message: "Do you want to add an usage section?",
     name: "usageSection",
   },
